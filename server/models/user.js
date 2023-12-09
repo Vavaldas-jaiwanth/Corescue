@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    latitude: {
+    firstName: {
       type: String,
       required: true,
     },
-    longitude: {
+    lastName: {
       type: String,
       required: true,
     },

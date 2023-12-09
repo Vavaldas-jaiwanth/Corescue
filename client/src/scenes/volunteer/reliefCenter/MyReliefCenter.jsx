@@ -88,14 +88,14 @@ function MyReliefCenter() {
         CenterName: '',
         Phone: '',
         Capacity: '',
-        Address: ''
-    });
-
-    const handleChange = (event) => {
+        Address: '',
+        latitude: '', // Add latitude
+        longitude: '', // Add longitude
+      });
+      const handleChange = (event) => {
         const { name, value } = event.target;
         setReliefForm({ ...reliefForm, [name]: value });
-    };
-
+      };
 
     // handle capacity
     const [stateCapacity, setStateCapacity] = React.useState();
@@ -135,33 +135,36 @@ function MyReliefCenter() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(reliefForm);
-
+    
         const form = {
             CenterName: reliefForm.CenterName,
             Capacity: reliefForm.Capacity,
             Phone: reliefForm.Phone,
             Address: reliefForm.Address,
+            latitude: reliefForm.latitude, // Add latitude
+            longitude: reliefForm.longitude, // Add longitude
             InCharge: userId
         }
-
+    
         axios.post('relief/addreliefcenter', form)
             .then((res) => {
-                console.log(res);
+                console.log("form res:",res);
                 toast.success('Relief Center Created');
                 setReliefForm({
                     CenterName: '',
                     Phone: '',
                     Capacity: '',
-                    Address: ''
+                    Address: '',
+                    latitude: '', // Clear latitude after submission if needed
+                    longitude: '', // Clear longitude after submission if needed
                 });
-                loadData()
+                loadData();
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-
-
+    
     // modal style
     const style = {
         position: 'absolute',
@@ -397,6 +400,34 @@ function MyReliefCenter() {
                                             value={reliefForm.Address}
                                             onChange={handleChange}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        type="text"
+                                        label="latitude"
+                                        name="latitude"
+                                        size="small"
+                                        value={reliefForm.latitude}
+                                        onChange={handleChange}
+                                    />
+                                    </Grid>
+
+                                    <Grid item xs={12}>
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        type="text"
+                                        label="longitude"
+                                        name="longitude"
+                                        size="small"
+                                        value={reliefForm.longitude}
+                                        onChange={handleChange}
+                                    />
                                     </Grid>
 
                                     <Grid item xs={12}>

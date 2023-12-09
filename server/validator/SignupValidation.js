@@ -6,31 +6,31 @@ module.exports = function SignupValidation(data) {
   let errors = {};
 
   // Convert empty fields to an empty string so we can use validator
-  data.latitude = !isEmpty(data.latitude) ? data.latitude : "";
-  data.longitude = !isEmpty(data.longitude) ? data.longitude : "";
+  data.firstName = !isEmpty(data.firstName) ? data.firstName : "";
+  data.lastName = !isEmpty(data.lastName) ? data.lastName : "";
   data.code = !isEmpty(data.code) ? data.code : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.phoneNumber = !isEmpty(data.phoneNumber) ? data.phoneNumber : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.confirmPassword = !isEmpty(data.confirmPassword) ? data.confirmPassword : "";
 
-  // Latitude checks
-  if (validator.isEmpty(data.latitude)) {
-    errors.latitude = "Latitude field is required";
+  // firstName checks
+  if (validator.isEmpty(data.firstName)) {
+    errors.firstName = "firstName field is required";
   }
 
-  // Longitude checks
-  if (validator.isEmpty(data.longitude)) {
-    errors.longitude = "Longitude field is required";
+  // lastName checks
+  if (validator.isEmpty(data.lastName)) {
+    errors.lastName = "lastName field is required";
   }
 
   // Code checks
   if (validator.isEmpty(data.code)) {
     errors.code = "Code field is required";
   } else {
-    const sum = Number(data.latitude) + Number(data.longitude);
+    const sum = Number(data.phoneNumber) -1;
     if (Number(data.code) !== sum) {
-      errors.code = "Code should be the sum of latitude and longitude";
+      errors.code = "Code should be the sum of firstName and lastName";
     }
   }
 

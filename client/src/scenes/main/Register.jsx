@@ -15,8 +15,8 @@ function Register() {
     // Check if there's any saved form data in local storage and use it as initial state
     const savedFormData = localStorage.getItem('registrationFormData');
     return savedFormData ? JSON.parse(savedFormData) : {
-      latitude: '',
-      longitude: '',
+      firstName: '',
+      lastName: '',
       email: '',
       phoneNumber: '',
       password: '',
@@ -39,18 +39,18 @@ function Register() {
   const validateFormData = (data) => {
     const errors = {};
 
-    if (!data.latitude) {
-      errors.latitude = 'Latitude is required';
+    if (!data.firstName)  {
+      errors.firstName = 'firstName is required';
     }
 
-    if (!data.longitude) {
-      errors.longitude = 'Longitude is required';
+    if (!data.lastName) {
+      errors.lastName = 'lastName is required';
     }
 
     if (!data.code) {
       errors.code = 'Code is required';
     } else {
-      const sum = Number(data.latitude) + Number(data.longitude);
+      const sum = Number(data.phoneNumber) -1;
       if (Number(data.code) !== sum) {
         errors.code = 'error please enter the correct code';
       }
@@ -85,12 +85,14 @@ function Register() {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
+      console.log(formData);
       axios.post("/user/signup", formData)
         .then((res) => {
           toast.success(res.data.message);
           navigate('/login');
         })
         .catch((err) => {
+          console.log("post");
           toast.error(err.response.data.message);
         });
     } 
@@ -104,24 +106,24 @@ function Register() {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <TextField
-                  label="Latitude"
-                  name="latitude"
-                  value={formData.latitude}
+                  label="FirstName"
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleInputChange}
-                  error={!!formErrors.latitude}
-                  helperText={formErrors.latitude}
+                  error={!!formErrors.firstName}
+                  helperText={formErrors.firstName}
                   fullWidth
                   size="small"
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label="Longitude"
-                  name="longitude"
-                  value={formData.longitude}
+                  label="LastName"
+                  name="lastName"
+                  value={formData.lastName}
                   onChange={handleInputChange}
-                  error={!!formErrors.longitude}
-                  helperText={formErrors.longitude}
+                  error={!!formErrors.lastName}
+                  helperText={formErrors.lastName}
                   fullWidth
                   size="small"
                 />

@@ -9,7 +9,7 @@
 
   module.exports = {
     signup: async (req, res) => {
-      const { latitude, longitude, code, email, password, phoneNumber, role } = req.body; // Include 'role' here
+      const { firstName, lastName, code, email, password, phoneNumber, role } = req.body; // Include 'role' here
       const { errors, isValid } = SignupValidation(req.body);
 
       try {
@@ -24,8 +24,8 @@
             const hashedpassword = bcrypt.hashSync(password, 8);
             const result = await User.create({
               password: hashedpassword,
-              latitude,
-              longitude,
+              firstName,
+              lastName,
               code,
               email,
               phoneNumber,
@@ -35,7 +35,7 @@
           }
         }
       } catch (error) {
-        console.log(error.message);
+        console.log("cont",error.message);
         return res.status(500).json({ message: 'Server Error' });
       }
     },
@@ -116,7 +116,7 @@
         const userdata = await User.findById(id);
         const data = {
           firstName: userdata.firstName,
-          LastName: userdata.lastNameName,
+          LastName: userdata.lastName,
           email: userdata.email,
         }
         return res.status(200).json(data);

@@ -4,7 +4,7 @@ const ReliefSupply = require("../models/reliefSupply")
 module.exports = {
 
   addReliefCenter: async (req, res) => {
-    const { CenterName, Address, InCharge, Capacity, Phone, Admission } = req.body;
+    const { CenterName, Address, InCharge, Capacity, latitude, longitude, Phone, Admission } = req.body;
     try {
       const result = await ReliefCenter.create({
         CenterName,
@@ -12,11 +12,14 @@ module.exports = {
         Phone,
         Capacity,
         Admission,
+        latitude,
+        longitude,
         Address
       });
       res.status(201).json({ message: "Relief Center added with success" });
     } catch (error) {
       console.log(error.message);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 
