@@ -101,7 +101,7 @@ const MapComponent = () => {
         latitude: parseFloat(user.latitude),
         longitude: parseFloat(user.longitude),
       }));
-
+console.log(staticMarkers);
       staticMarkers.forEach((marker) => {
         const customIcon = L.divIcon({
           className: 'custom-marker',

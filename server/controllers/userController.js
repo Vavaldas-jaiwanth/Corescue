@@ -1,6 +1,6 @@
 // controllers/userController.js
 
-const User = require('../models/user');
+const User = require('../models/reliefCenter');
 
 exports.getUserData = async (req, res) => {
   try {
