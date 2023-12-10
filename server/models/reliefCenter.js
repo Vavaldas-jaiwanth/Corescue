@@ -24,6 +24,10 @@ const ReliefCenterSchema = new Schema(
       default : 0
       // required: true
     },
+    email:{
+      type:String,
+      required:true,
+    },
     latitude:{
       type:String,
       required:true

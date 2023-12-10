@@ -91,6 +91,7 @@ function MyReliefCenter() {
         Address: '',
         latitude: '', // Add latitude
         longitude: '', // Add longitude
+        email:'',
       });
       const handleChange = (event) => {
         const { name, value } = event.target;
@@ -140,6 +141,7 @@ function MyReliefCenter() {
             CenterName: reliefForm.CenterName,
             Capacity: reliefForm.Capacity,
             Phone: reliefForm.Phone,
+            email:reliefForm.email,
             Address: reliefForm.Address,
             latitude: reliefForm.latitude, // Add latitude
             longitude: reliefForm.longitude, // Add longitude
@@ -155,6 +157,7 @@ function MyReliefCenter() {
                     Phone: '',
                     Capacity: '',
                     Address: '',
+                    email:'',
                     latitude: '', // Clear latitude after submission if needed
                     longitude: '', // Clear longitude after submission if needed
                 });
@@ -370,6 +373,19 @@ function MyReliefCenter() {
                                             name="Phone"
                                             size="small"
                                             value={reliefForm.Phone}
+                                            onChange={handleChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            type="email"  // Change the type to "email" for email addresses
+                                            label="Email Address"  // Change the label to reflect that you're collecting an email
+                                            name="email"  // Assuming your state property is named "Email"
+                                            size="small"
+                                            value={reliefForm.email}  // Assuming your state property is named "Email"
                                             onChange={handleChange}
                                         />
                                     </Grid>

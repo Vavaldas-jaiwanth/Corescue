@@ -6,6 +6,7 @@ import './MapComponents.css'; // Import your CSS file for styling
 
 const MapComponent = () => {
   const [userData, setUserData] = useState([]);
+  const [mail, setMail] = useState([]);
   const [map, setMap] = useState(null); // State to store the map instance
 
   useEffect(() => {
@@ -14,10 +15,16 @@ const MapComponent = () => {
         const response = await fetch('/api/user-data');
         const data = await response.json();
         const updatedUserData = data.map((user) => ({
+          name:user.CenterName,
           latitude: user.latitude,
           longitude: user.longitude,
         }));
+        const updatedmailData = data.map((user) => ({
+          name:user.CenterName,
+          email:user.email,
+        }));
         setUserData(updatedUserData);
+        setMail(updatedmailData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -95,13 +102,14 @@ const MapComponent = () => {
     );
   });
 };
- */
+ */console.log("email:",mail);
     const displayStaticMarkers = () => {
       const staticMarkers = userData.map((user) => ({
+      name:user.name,
         latitude: parseFloat(user.latitude),
         longitude: parseFloat(user.longitude),
       }));
-console.log(staticMarkers);
+      console.log(staticMarkers);
       staticMarkers.forEach((marker) => {
         const customIcon = L.divIcon({
           className: 'custom-marker',
@@ -113,7 +121,7 @@ console.log(staticMarkers);
          L.marker([marker.latitude, marker.longitude], { icon: customIcon })
           .addTo(map)
           .bindPopup(
-            `<br/>Latitude: ${marker.latitude}<br/>Longitude: ${marker.longitude}`
+            `<strong>${marker.name}</strong><br/>Latitude: ${marker.latitude}<br/>Longitude: ${marker.longitude}`
           )
           .openPopup();
        }
@@ -122,6 +130,7 @@ console.log(staticMarkers);
 
     const findNearestMarkers = (currentLatitude, currentLongitude, limit) => {
       const staticMarkers = userData.map((user) => ({
+        name:user.name,
         latitude: parseFloat(user.latitude),
         longitude: parseFloat(user.longitude),
       }));
@@ -150,7 +159,7 @@ console.log(staticMarkers);
         L.marker([marker.latitude, marker.longitude], { icon: customIcon })
           .addTo(map)
           .bindPopup(
-            `<br/>Latitude: ${marker.latitude}<br/>Longitude: ${marker.longitude}`
+            `<strong>${marker.name}</strong><br/>Latitude: ${marker.latitude}<br/>Longitude: ${marker.longitude}`
           )
           .openPopup();
       });
