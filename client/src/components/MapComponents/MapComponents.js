@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+
 import './MapComponents.css'; // Import your CSS file for styling
 
 const MapComponent = () => {
@@ -106,6 +107,7 @@ const MapComponent = () => {
     const displayStaticMarkers = () => {
       const staticMarkers = userData.map((user) => ({
       name:user.name,
+       
         latitude: parseFloat(user.latitude),
         longitude: parseFloat(user.longitude),
       }));

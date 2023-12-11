@@ -7,7 +7,7 @@ function FloodPredict() {
   return (
     <div className="App">
       <div className="container">
-        <Weather defaultCity="Kerala" />
+        <Weather defaultCity="Hyderabad" />
       </div>
       
     </div>

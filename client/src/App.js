@@ -16,6 +16,7 @@ import { useEffect } from "react"; // Remove the redundant React import
 import { useDispatch } from "react-redux";
 import { setCollectionCenter, setAdmin, setReliefCenter } from "./store/auth";
 import MapComponent from './components/MapComponents/MapComponents';
+import MapAndWeather from "./home";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -43,7 +44,7 @@ function App() {
       <NavBar />
       <SnackBar />
       <Routes>
-        <Route path="/" element={< MapComponent />} />
+        <Route path="/" element={<MapAndWeather  />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
