@@ -35,6 +35,10 @@ const mainNavItems = [
     title: "Register",
     link: "/register",
   },
+  {
+    title: "do&donts",
+    link: "/do&donts",
+  },
 ];
 
 const reliefNavItems = [

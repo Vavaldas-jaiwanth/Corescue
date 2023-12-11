@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { setCollectionCenter, setAdmin, setReliefCenter } from "./store/auth";
 import MapComponent from './components/MapComponents/MapComponents';
 import MapAndWeather from "./home";
+import DisasterPrecautions from "./components/DisasterPrecautions/DisasterPrecautions";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:5000";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/" element={<MapAndWeather  />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/do&donts" element={<DisasterPrecautions/>} />
 
         <Route path="/admin">
           <Route index element={<AdminLayout />} />
